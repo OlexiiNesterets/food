@@ -1,0 +1,15 @@
+<header [class.modal-opened]="modalIsOpen" class="header">
+    <div class="wrapper header-wrapper">
+        <div (click)="invokeCart()"
+             class="cart-area">
+            <mat-icon svgIcon="cart"
+                      [class.disabled]="!this.cartService.getCartItems().size"
+                      class="cart-icon"></mat-icon>
+            <div *ngIf="this.cartService.getCartItems().size"
+                 class="counter">
+                <span>{{this.cartService.getTotalQuantity()}}</span>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="header-holder"></div>

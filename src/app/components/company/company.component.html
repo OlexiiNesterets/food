@@ -1,0 +1,73 @@
+<div *ngIf="company"
+     class="company wrapper">
+    <div class="company-header">
+        <nav class="nav">
+            <ul class="nav-list">
+                <li (click)="setSection('menu')"
+                    [class.nav-item-active]="'menu' === currentSection"
+                    class="nav-item">Меню</li>
+                <li (click)="setSection('info')"
+                    [class.nav-item-active]="'info' === currentSection"
+                    class="nav-item">Інфо</li>
+            </ul>
+        </nav>
+    </div>
+    <div class="content">
+
+        <div class="categories-area">
+            <div class="company-img-area">
+                <img src="https://assets.misteram.com.ua/misteram-public/{{company.image}}.png"
+                     alt="company-image"
+                     class="company-image">
+            </div>
+            <div *ngIf="currentSection === 'menu'"
+                 class="categories">
+                <div *ngFor="let category of categoriesService.categories"
+                     (click)="setCategory(category)"
+                     [class.active-category]="category === activeCategory"
+                     class="category-item">
+                    <span>{{category.name}}</span>
+                </div>
+            </div>
+            <div *ngIf="currentSection === 'info'"
+                 class="misk-info">
+                <div>
+                    <span class="misk">Сайт: <a
+                           href="{{company.landingSiteData.url}}">{{company.landingSiteData.url}}</a></span>
+                    <span class="misk">Телефон: {{company.ownerPhone}}</span>
+                </div>
+            </div>
+        </div>
+
+        <app-accordion *ngIf="currentSection === 'menu'"
+                       [items]="categoriesService.categories"
+                       [selectedItem]="activeCategory"
+                       (onSelectedItemChanged)="setCategory($event)"
+                       class="accordion"></app-accordion>
+
+        <div *ngIf="currentSection === 'menu'"
+             #menu
+             class="company-info-area menu">
+            <ng-container *ngIf="dishes">
+                <app-dish-card *ngFor="let dish of dishes"
+                               [dish]="dish"
+                               class="dish-card"></app-dish-card>
+            </ng-container>
+            <ng-container *ngIf="dishesAreLoading">
+                <app-dish-card *ngFor="let dishMock of dishesPlaceholders"
+                               [isPlaceholder]="'true'"
+                               class="dish-card-placeholder"></app-dish-card>
+            </ng-container>
+        </div>
+        <div *ngIf="currentSection === 'info'">
+            <div class="company-info-area company-description">
+                <h1 class="description-header">Про заклад:</h1>
+                <p>{{company.translatedAttributes.ua.description}}</p>
+            </div>
+        </div>
+
+        <div *ngIf="currentSection === 'menu'"
+             class="categories-accord">
+        </div>
+    </div>
+</div>

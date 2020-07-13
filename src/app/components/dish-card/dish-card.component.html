@@ -1,0 +1,37 @@
+<div [class.card-holder-wrapper]="!imgIsLoaded" class="card-wrapper">
+    <div *ngIf="dish"
+         [class.loading-image]="!imgIsLoaded"
+         class="card">
+        <div class="img-area">
+            <img src="https://assets.misteram.com.ua/misteram-public/{{dish.image}}.png"
+                 (load)="onImgLoad()"
+                 alt="dish-image"
+                 class="dish-image">
+        </div>
+        <div>
+            <div (click)="toggleDescription()"
+                 class="dish-info-area">
+                <div class="dish-info">
+                    <span class="dish-name">{{dish.name}}</span>
+                    <span *ngIf="showDescription"
+                          class="dish-describtion">{{dish.description}}</span>
+                </div>
+            </div>
+            <div class="price-area">
+                <span class="dish-weight">{{dish.measure}} г</span>
+                <div class="dish-price-area">
+                    <span *ngIf="dish.dishNewPrice"
+                          class="dish-price">{{dish.dishNewPrice | price}} грн.</span>
+                    <span [class.crossed-out]="dish.dishNewPrice"
+                          class="dish-price">{{dish.price}} грн.</span>
+                </div>
+                <div class="add-to-cart-area">
+                    <app-add-to-cart [dish]="dish"></app-add-to-cart>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="!imgIsLoaded"
+         class="card-placeholder"></div>
+</div>

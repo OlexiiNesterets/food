@@ -1,0 +1,15 @@
+<div *ngIf="items" class="accordion">
+    <div *ngIf="showList"
+         class="items-list">
+        <div *ngFor="let item of items"
+             (click)="onItemClick(item)"
+             [class.active-item]="item === selectedItem"
+             class="category-item">
+            <span>{{item.name}}</span>
+        </div>
+    </div>
+    <div (click)="onItemClick()" class="category-item active-item">
+        <span>{{selectedItem.name}}</span>
+    </div>
+    <div [class.arrow-up]="showList" class="arrow"></div>
+</div>

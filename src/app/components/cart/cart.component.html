@@ -1,0 +1,96 @@
+<div class="cart-area">
+    <div *ngIf="cart && !clearAttempt && !makeOrder"
+         class="cart">
+        <div class="table-wrapper">
+            <table class="table">
+                <tr *ngFor="let item of cart.values()"
+                    class="tr">
+                    <td [class.crossed-out]="!item.quantity"
+                        class="td name">{{item.product.name}}</td>
+                    <div class="td-wrapper">
+                        <td [class.crossed-out]="!item.quantity"
+                            class="td">{{item.product.measure}}</td>
+                        <td class="td price-cell">
+                            <ng-container *ngIf="item.quantity">
+                                <span [class.crossed-out]="item.product.dishNewPrice"
+                                      class="price start-price">{{item.product.price * item.quantity}}
+                                    <span *ngIf="!item.product.dishNewPrice"> грн.</span>
+                                </span>
+                                <span *ngIf="item.product.dishNewPrice"
+                                      class="price">{{item.product.dishNewPrice * item.quantity | price}} грн.</span>
+                            </ng-container>
+                        </td>
+                        <td class="td counter">
+                            <div [class.active]="item.quantity"
+                                 class="add-to-cart">
+                                <ng-container *ngIf="item.quantity">
+                                    <button (click)="removeItem(item)"
+                                            class="counter-button button-remove">
+                                        <span>-</span>
+                                    </button>
+                                    <div class="quantity">
+                                        <span>{{item.quantity}}</span>
+                                    </div>
+                                </ng-container>
+                                <button (click)="addItem(item)"
+                                        class="counter-button button-add">
+                                    <span>+</span>
+                                </button>
+                            </div>
+                        </td>
+                    </div>
+
+                </tr>
+            </table>
+        </div>
+        <table class="table">
+            <tr class="tr tr-total">
+                <td class="td">
+                    <span class="total-text">Всього до сплати:</span>
+                    <span class="price"> {{cartService.getTotalPrice() | price}} грн.</span>
+                </td>
+            </tr>
+            <tr class="tr tr-buttons">
+                <td class="td-buttons">
+                    <div>
+                        <button (click)="cartService.invokeCart(false)"
+                                class="button button-back">Назад</button>
+                        <button (click)="toMakeOrder()"
+                                class="button button-submit">Оформити</button>
+                    </div>
+                    <button class="button clear-button"
+                            (click)="clearAttempt = true">Очистити</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div *ngIf="!cart && !makeOrder"
+         class="cart">
+        <div (click)="cartService.invokeCart(false)"
+             class="cart-empty">
+            <span>
+                Порожнеча...
+            </span>
+        </div>
+    </div>
+
+    <div (click)="cartService.invokeCart(false)"
+         class="overlay">
+    </div>
+    <div *ngIf="clearAttempt"
+         class="cart modal">
+        <span class="modal-clear-text">Ви дійсно бажаєте видалити замовлення?</span>
+        <div>
+            <button (click)="cartCleanUp()"
+                    class="button button-modal button-modal-approve">Так</button>
+            <button (click)="clearAttempt = false"
+                    class="button button-modal button-modal-reject">Ні</button>
+        </div>
+    </div>
+    <div *ngIf="makeOrder"
+         (click)="cartService.invokeCart(false)"
+         class="cart modal modal-order">
+        <span>Дякуємо, за замовлення!</span>
+    </div>
+</div>

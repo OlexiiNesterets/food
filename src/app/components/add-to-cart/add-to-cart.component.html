@@ -1,0 +1,9 @@
+<div [class.active]="quantity" class="add-to-cart">
+    <ng-container *ngIf="quantity">
+        <button (click)="cartService.removeItem(dish)" class="button button-remove">-</button>
+        <div class="quantity">
+            <span>{{quantity}}</span>
+        </div>
+    </ng-container>
+    <button (click)="cartService.addItem(dish)" class="button button-add">+</button>
+</div>

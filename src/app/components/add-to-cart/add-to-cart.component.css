@@ -1,0 +1,46 @@
+.add-to-cart {
+    display: flex;
+    justify-content: flex-end;
+    height: 45px;
+    /* min-width: 150px; */
+    color: #707b71;
+}
+
+.active {
+    border-radius: 25px;
+    background: #f0f0f0;
+}
+
+.quantity {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+}
+
+.button {
+    width: 45px;
+    border: none;
+    border-radius: 50%;
+    color: white;
+    font-weight: 700;
+    font-size: 21px;
+}
+
+.button-remove {
+    background: #d54c57;
+}
+
+.button-add {
+    background: #13cd1c;
+}
+
+@media (max-width: 400px) {
+    .add-to-cart {
+        height: 40px;
+    }
+
+    .button {
+        width: 40px;
+    }
+}

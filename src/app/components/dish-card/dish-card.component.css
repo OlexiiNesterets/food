@@ -1,0 +1,135 @@
+.card-wrapper {
+    padding: 2%;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    /* visibility: hidden;
+    position: absolute; */
+    font-family: sans-serif;
+    box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.15);
+    background: white;
+}
+
+.dish-image {
+    /* width: 370px; */
+    width: 100%;
+}
+
+.dish-info-area {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 70px;
+}
+
+.dish-info {
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 30px;
+    padding: 20px 15px;
+    box-sizing: border-box;
+    text-align: center;
+    background: white;
+    color: #909090;
+    cursor: pointer;
+} 
+
+.dish-name {
+    border-bottom: 3px dotted lightgrey;
+}
+
+.dish-describtion {
+    padding-top: 10px;
+}
+
+.price-area {
+    display: flex;
+    padding: 10px;
+    min-height: 60px;
+    background: #fafafa;
+    font-size: 1em;
+}
+
+.dish-weight {
+    display: flex;
+    align-items: center;
+    margin-right: 8px;
+    color: #909090;
+    min-width: 70px;
+}
+
+.dish-price-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    flex: 1 1 0;
+    min-width: 65px;
+}
+
+.dish-price {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1 1 0;
+}
+
+.add-to-cart-area {
+    display: flex;
+    flex: 1 1 0;
+    align-items: center;
+    justify-content: flex-end;
+    width: 138px;
+}
+
+.dish-price {
+    color: #50b018;
+}
+
+.crossed-out {
+    color: #909090;
+    text-decoration: line-through;
+}
+
+.card-placeholder {
+    height: 426px;
+    background: rgb(240, 240, 240);
+    box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.15);
+}
+
+.card-holder-wrapper {
+    padding: 2%;
+    height: 100%;
+}
+
+.loading-image {
+    background: rgb(224, 224, 224);
+}
+
+.visible {
+    visibility: unset;
+    position: static;
+}
+
+@media (max-width: 400px) {
+
+    .card-wrapper {
+        padding: 2% 0;
+    }
+
+    .price-area {
+        font-size: 0.9em;
+    }
+
+    .dish-price-area  {
+        align-items: flex-start;
+    }
+}
